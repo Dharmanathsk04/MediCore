@@ -1,0 +1,146 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div class="card">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">Create Account</h2>
+        <p class="mt-2 text-sm text-gray-600">Register for Healthcare SaaS</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div *ngIf="errorMessage" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {{ errorMessage }}
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              class="form-input"
+              placeholder="John"
+              [class.border-red-500]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+            />
+            <p *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" 
+               class="mt-1 text-sm text-red-600">
+              First name is required
+            </p>
+          </div>
+
+          <div>
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              class="form-input"
+              placeholder="Doe"
+              [class.border-red-500]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+            />
+            <p *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" 
+               class="mt-1 text-sm text-red-600">
+              Last name is required
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="form-label">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="form-input"
+            placeholder="john.doe@example.com"
+            [class.border-red-500]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          />
+          <p *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" 
+             class="mt-1 text-sm text-red-600">
+            Please enter a valid email address
+          </p>
+        </div>
+
+        <div>
+          <label for="phone" class="form-label">Phone Number</label>
+          <input
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            class="form-input"
+            placeholder="+1234567890"
+            [class.border-red-500]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+          />
+          <p *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" 
+             class="mt-1 text-sm text-red-600">
+            Phone number is required
+          </p>
+        </div>
+
+        <div>
+          <label for="userType" class="form-label">User Type</label>
+          <select
+            id="userType"
+            formControlName="userType"
+            class="form-input"
+            [class.border-red-500]="registerForm.get('userType')?.invalid && registerForm.get('userType')?.touched"
+          >
+            <option *ngFor="let type of userTypes" [value]="type.value">{{ type.label }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="password" class="form-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-input"
+            placeholder="••••••••"
+            [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          />
+          <p *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" 
+             class="mt-1 text-sm text-red-600">
+            Password must be at least 6 characters
+          </p>
+        </div>
+
+        <div>
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            class="form-input"
+            placeholder="••••••••"
+            [class.border-red-500]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+          />
+          <p *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" 
+             class="mt-1 text-sm text-red-600">
+            Passwords do not match
+          </p>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            [disabled]="loading || registerForm.invalid"
+            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span *ngIf="!loading">Create Account</span>
+            <span *ngIf="loading">Creating account...</span>
+          </button>
+        </div>
+
+        <div class="text-center">
+          <p class="text-sm text-gray-600">
+            Already have an account? 
+            <a routerLink="/auth/login" class="text-primary-600 hover:text-primary-700 font-medium">
+              Sign in here
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

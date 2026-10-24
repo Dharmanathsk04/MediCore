@@ -1,0 +1,84 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-primary-600">Healthcare SaaS</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700">{{ currentUser?.email }}</span>
+          <button (click)="logout()" class="btn-secondary">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">Dashboard</h2>
+      <p class="mt-2 text-gray-600">Welcome back! Here's what's happening today.</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="card bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+        <h3 class="text-lg font-semibold mb-2">Total Appointments</h3>
+        <p class="text-4xl font-bold">{{ stats.totalAppointments }}</p>
+      </div>
+      <div class="card bg-gradient-to-br from-green-500 to-green-600 text-white">
+        <h3 class="text-lg font-semibold mb-2">Today's Appointments</h3>
+        <p class="text-4xl font-bold">{{ stats.todayAppointments }}</p>
+      </div>
+      <div class="card bg-gradient-to-br from-yellow-500 to-yellow-600 text-white">
+        <h3 class="text-lg font-semibold mb-2">Pending Requests</h3>
+        <p class="text-4xl font-bold">{{ stats.pendingRequests }}</p>
+      </div>
+      <div class="card bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+        <h3 class="text-lg font-semibold mb-2">Completed</h3>
+        <p class="text-4xl font-bold">{{ stats.completedAppointments }}</p>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="card mb-8">
+      <h3 class="text-xl font-bold text-gray-900 mb-4">Quick Actions</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a routerLink="/appointments/new" class="p-4 border-2 border-primary-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition">
+          <h4 class="font-semibold text-primary-700">Book Appointment</h4>
+          <p class="text-sm text-gray-600 mt-1">Schedule a new appointment</p>
+        </a>
+        <a routerLink="/doctors" class="p-4 border-2 border-primary-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition">
+          <h4 class="font-semibold text-primary-700">View Doctors</h4>
+          <p class="text-sm text-gray-600 mt-1">Browse available doctors</p>
+        </a>
+        <a routerLink="/patients" class="p-4 border-2 border-primary-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition">
+          <h4 class="font-semibold text-primary-700">Manage Patients</h4>
+          <p class="text-sm text-gray-600 mt-1">View patient records</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="card">
+      <h3 class="text-xl font-bold text-gray-900 mb-4">Recent Activity</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="font-semibold text-gray-900">Appointment with Dr. Smith</p>
+            <p class="text-sm text-gray-600">Today at 2:00 PM</p>
+          </div>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Confirmed</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="font-semibold text-gray-900">Lab Test Results</p>
+            <p class="text-sm text-gray-600">Yesterday at 10:30 AM</p>
+          </div>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Completed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
